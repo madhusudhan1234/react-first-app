@@ -4,7 +4,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const helloworld = "Welcome to the Road to learn React";
+    const helloworld = "Welcome to the Road to learn HMR Working";
 
     return (
       <div className="App">
