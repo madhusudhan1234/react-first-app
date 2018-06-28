@@ -23,11 +23,9 @@ const list = [
 
 class App extends Component {
   render() {
-    const helloworld = "Welcome to the Road to learn HMR Working";
-
     return (
       <div className="App">
-        {list.map(function(item) {
+        {list.map(item => {
           return (
             <div key={item.objectID}>
               <span>
@@ -37,7 +35,7 @@ class App extends Component {
               <span>{item.num_comments}</span>
               <span>{item.points}</span>
             </div>
-          )
+          );
         })}
       </div>
     );
