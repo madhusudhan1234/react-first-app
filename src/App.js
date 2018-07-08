@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const list = [
@@ -22,7 +21,6 @@ const list = [
 ];
 
 function isSearched(searchTerm) {
-  console.log(searchTerm);
   return function(item) {
     return item.title.toLowerCase().includes(searchTerm.toLowerCase());
   }
@@ -52,13 +50,15 @@ class App extends Component {
   }
 
   render() {
+    const { searchTerm, list } = this.state;
     return (
       <div className="App">
         <form>
           <input type="text" 
+            value={searchTerm}
             onChange={this.onSearchChange} />
         </form>
-        {this.state.list.filter(isSearched(this.state.searchTerm)).map(item => {
+        {list.filter(isSearched(searchTerm)).map(item => {
           const onHandleDismiss = () =>
           this.onDismiss(item.objectID);
           return (
