@@ -45,8 +45,10 @@ class App extends Component {
 
   onDismiss(id) {
     const isNotId = item => item.objectID !== id;
-    const updatedList = this.state.list.filter(isNotId);
-    this.setState({ list: updatedList });
+    const updatedHits = this.state.result.hits.filter(isNotId);
+    this.setState({ 
+      result: { ...this.state.result, hits: updatedHits }
+     });
   }
 
   onSearchChange(event) {
@@ -116,7 +118,7 @@ const Table = ({ list, pattern, onDismiss }) => {
 
   return (
     <div className='table'>
-    {list.filter(isSearched(pattern)).map(item => 
+    {list.map(item => 
       <div key={item.objectId} className='table-row'>
         <span style={largeColumn}>
           <a href={item.url}>{item.title}</a>
