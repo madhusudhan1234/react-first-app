@@ -12,5 +12,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "react-test-renderer": "^16.5.2"
   }
 }

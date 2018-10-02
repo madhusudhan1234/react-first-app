@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
 import './App.css';
 
 const DEFAULT_QUERY = 'redux';
@@ -106,7 +107,6 @@ class App extends Component {
       error
     } = this.state;
     
-    console.log(this.state);
     const page = (
       results && 
       results[searchKey] && 
@@ -154,7 +154,7 @@ class App extends Component {
   }
 }
 
-const Search = ({
+export const Search = ({
     value,
     onChange,
     onSubmit,
@@ -171,7 +171,7 @@ const Search = ({
         </button>
       </form>
 
-const Button = ({ onClick, className = '', children }) =>
+export const Button = ({ onClick, className = '', children }) =>
   <button
     onClick={onClick}
     className={className}
@@ -180,7 +180,7 @@ const Button = ({ onClick, className = '', children }) =>
     {children}
   </button>
 
-const Table = ({ list, pattern, onDismiss }) => {
+export const Table = ({ list, onDismiss }) => {
   const largeColumn = {
     width: '40%',
   }
@@ -196,7 +196,7 @@ const Table = ({ list, pattern, onDismiss }) => {
   return (
     <div className='table'>
     {list.map(item => 
-      <div key={item.created_at_i} className='table-row'>
+      <div key={item.objectID} className='table-row'>
         <span style={largeColumn}>
           <a href={item.url}>{item.title}</a>
         </span>
