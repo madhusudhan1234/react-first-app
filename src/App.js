@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import propTypes from 'prop-types';
 import './App.css';
 
 const DEFAULT_QUERY = 'redux';
@@ -154,7 +155,7 @@ class App extends Component {
   }
 }
 
-export const Search = ({
+const Search = ({
     value,
     onChange,
     onSubmit,
@@ -171,7 +172,7 @@ export const Search = ({
         </button>
       </form>
 
-export const Button = ({ onClick, className = '', children }) =>
+const Button = ({ onClick, className, children }) => 
   <button
     onClick={onClick}
     className={className}
@@ -180,7 +181,18 @@ export const Button = ({ onClick, className = '', children }) =>
     {children}
   </button>
 
-export const Table = ({ list, onDismiss }) => {
+
+Button.propTypes = {
+  onClick: propTypes.func.isRequired,
+  className: propTypes.string,
+  children: propTypes.node.isRequired,
+};  
+
+Button.defaultProps = {
+  className: '',
+};
+
+const Table = ({ list, onDismiss }) => {
   const largeColumn = {
     width: '40%',
   }
@@ -214,4 +226,18 @@ export const Table = ({ list, onDismiss }) => {
   )
 }
 
+Table.propTypes = {
+  list: propTypes.arrayOf(
+    propTypes.shape({
+      objectID: propTypes.string.isRequired,
+      author: propTypes.string,
+      url: propTypes.string,
+      num_comments: propTypes.number,
+      points: propTypes.number,
+    })
+  ).isRequired,
+  onDismiss: propTypes.func.isRequired,
+};
+
 export default App;
+export { Button, Search, Table };
