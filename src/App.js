@@ -148,12 +148,11 @@ class App extends Component {
             />
           }
           <div className="interactions">
-            { isLoading 
-              ? <Loading/>
-              : <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-                More
-              </Button>  
-            }
+            <ButtonWithLoading
+              isLoading={isLoading}
+              onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+              More
+            </ButtonWithLoading>
           </div>
         </div>
       </div>
@@ -183,7 +182,6 @@ class Search extends Component {
           value={value}
           onChange={onChange}
           ref={(node) => { this.input = node; }}
-          ref={(node) => { this.input = node; }}
         />
         <button type="submit">
           {children}
@@ -205,6 +203,12 @@ const Button = ({ onClick, className, children }) =>
     {children}
   </button>
 
+const withLoading = (Component) => ({ isLoading, ...rest }) => 
+  isLoading
+    ? <Loading />
+    : <Component {...rest } />
+
+const ButtonWithLoading = withLoading(Button);    
 
 Button.propTypes = {
   onClick: propTypes.func.isRequired,
