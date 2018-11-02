@@ -13,6 +13,7 @@ import {
 import Search from './components/Search';
 import Table from './components/Table';
 import Button from './components/Button';
+import Loading from './components/Loading';
 
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {
   const { searchKey, results } = prevState;
@@ -164,9 +165,6 @@ class App extends Component {
     );
   }
 }
-
-const Loading = () =>
-  <div>Loading...</div>
 
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
   isLoading
