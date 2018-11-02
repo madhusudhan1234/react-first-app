@@ -5,3 +5,6 @@ export const PATH_SEARCH = '/search';
 export const PARAM_SEARCH = 'query=';
 export const PARAM_PAGE = 'page=';
 export const PARAM_HPP = 'hitsPerPage=';
+export const LARGE_COLUMN = { width: '40%' };
+export const MID_COLUMN = { width: '30%' };
+export const SMALL_COLUMN = { width: '10%' };
