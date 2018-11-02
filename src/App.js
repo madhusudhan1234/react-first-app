@@ -4,15 +4,16 @@ import { sortBy } from 'lodash';
 import propTypes from 'prop-types';
 import classNames from 'classnames';
 import './App.css';
-
-const DEFAULT_QUERY = 'redux';
-const DEFAULT_HPP = '100';
-
-const PATH_BASE = 'https://hn.algolia.com/api/v1';
-const PATH_SEARCH = '/search';
-const PARAM_SEARCH = 'query=';
-const PARAM_PAGE = 'page=';
-const PARAM_HPP = 'hitsPerPage=';
+import {
+  DEFAULT_QUERY,
+  DEFAULT_HPP,
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE,
+  PARAM_HPP,
+} from './constants';
+import Search from './components/Search';
 
 const SORTS = {
   NONE: list => list,
@@ -157,7 +158,6 @@ class App extends Component {
             </div>
             : <Table 
               list={list}
-              pattern={searchTerm}
               onDismiss={this.onDismiss}
             />
           }
@@ -174,39 +174,8 @@ class App extends Component {
   }
 }
 
-class Search extends Component {
-  componentDidMount() {
-    if (this.input) {
-      this.input.focus();
-    }
-  }
-
-  render() {
-    const {
-      value,
-      onChange,
-      onSubmit,
-      children
-    } = this.props;
-
-    return (
-      <form onSubmit={onSubmit}>
-        {children} <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          ref={(node) => { this.input = node; }}
-        />
-        <button type="submit">
-          {children}
-        </button>
-      </form>
-    )
-  }
-}
-
 const Loading = () => 
-  <div>Lodaing...</div>
+  <div>Loading...</div>
 
 const Button = ({ onClick, className, children }) => 
   <button
@@ -276,14 +245,13 @@ class Table extends Component {
   render() {
     const {
       list,
-      onSort,
       onDismiss
     } = this.props;
 
     const {
       sortKey,
       isSortReverse,
-      } = this.state;
+    } = this.state;
 
     const largeColumn = {
       width: '40%',

@@ -104,7 +104,7 @@ exports[`App has a valid snapshot 1`] = `
       className="interactions"
     >
       <div>
-        Lodaing...
+        Loading...
       </div>
     </div>
   </div>
