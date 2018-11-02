@@ -14,6 +14,7 @@ import {
   PARAM_HPP,
 } from './constants';
 import Search from './components/Search';
+import Button from './components/Button';
 
 const SORTS = {
   NONE: list => list,
@@ -174,17 +175,8 @@ class App extends Component {
   }
 }
 
-const Loading = () => 
+const Loading = () =>
   <div>Loading...</div>
-
-const Button = ({ onClick, className, children }) => 
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >  
-    {children}
-  </button>
 
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
   isLoading
@@ -213,17 +205,6 @@ const Sort = ({
       </Button>
     )
   }
-
-
-Button.propTypes = {
-  onClick: propTypes.func.isRequired,
-  className: propTypes.string,
-  children: propTypes.node.isRequired,
-};  
-
-Button.defaultProps = {
-  className: '',
-};
 
 class Table extends Component {
   constructor(props) {
