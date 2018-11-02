@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "enzyme": "^3.6.0",
+    "merge": ">=1.2.1",
     "enzyme-adapter-react-16": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.2",
