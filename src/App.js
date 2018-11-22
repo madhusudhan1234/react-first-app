@@ -34,7 +34,7 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
     },
     isLoading: false,
   };
-}
+};
 
 class App extends Component {
 
@@ -48,43 +48,36 @@ class App extends Component {
       error: null,
       isLoading: false
     };
-
-    this.needsToSearchTopStories = this.needToSearchTopStories.bind(this);
-    this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this);
-    this.onSearchSubmit = this.onSearchSubmit.bind(this);
-    this.onDismiss = this.onDismiss.bind(this);
   }
 
-  needToSearchTopStories(searchTerm) {
+  needsToSearchTopStories = (searchTerm) => {
     return  !this.state.results[searchTerm];
-  }
+  };
 
-  onSearchSubmit(event) {
+  onSearchSubmit = (event) => {
     const { searchTerm } = this.state;
     this.setState({ searchKey: searchTerm });
     if (this.needsToSearchTopStories(searchTerm)) {
       this.fetchSearchTopStories(searchTerm);
     }
     event.preventDefault();
-  }
+  };
 
-  setSearchTopStories(result) {
+  setSearchTopStories = (result) => {
     const { hits, page } = result;
     this.setState(updateSearchTopStoriesState(hits, page));
-  }
+  };
 
-  fetchSearchTopStories(searchTerm, page = 0) {
+  fetchSearchTopStories = (searchTerm, page = 0) => {
     this.setState({ isLoading: true });
 
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(e => this.setState({ error: e }));
-  }
+  };
 
-  onDismiss(id) {
+  onDismiss = (id) => {
     const { searchKey, results } = this.state;
     const { hits, page } = results[searchKey];
     const isNotId = item => item.objectID !== id;
@@ -97,11 +90,11 @@ class App extends Component {
         [searchKey]: { hits: updatedHits, page }
       }
     })
-  }
+  };
 
-  onSearchChange(event) {
+  onSearchChange = (event) => {
     this.setState({ searchTerm: event.target.value });
-  }
+  };
 
   componentDidMount() {
     const { searchTerm } = this.state;
