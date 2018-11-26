@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import propTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArchive } from '@fortawesome/free-solid-svg-icons'
 import Button from "./Button";
 import Sort from "./Sort";
-import SORTS from "../utils"
+import SORTS from "../utils";
 import {
   LARGE_COLUMN,
   MID_COLUMN,
@@ -44,39 +46,43 @@ export default class Table extends Component {
       <div className='table'>
         <div className="table-header">
           <span style={LARGE_COLUMN}>
+            Title &nbsp;
             <Sort
               onSort={this.onSort}
               sortKey={'TITLE'}
               activeSortKey={sortKey}
+              isSortReverse={isSortReverse}
             >
-              Title
             </Sort>
           </span>
           <span style={MID_COLUMN}>
+            Author &nbsp;
             <Sort
               onSort={this.onSort}
               sortKey={'AUTHOR'}
               activeSortKey={sortKey}
+              isSortReverse={isSortReverse}
             >
-              Author
             </Sort>
           </span>
           <span style={SMALL_COLUMN}>
+            Comments &nbsp;
             <Sort
               onSort={this.onSort}
               sortKey={'COMMENTS'}
               activeSortKey={sortKey}
+              isSortReverse={isSortReverse}
             >
-              Comments
             </Sort>
           </span>
           <span style={SMALL_COLUMN}>
+            Points &nbsp;
             <Sort
               onSort={this.onSort}
               sortKey={'POINTS'}
               activeSortKey={sortKey}
+              isSortReverse={isSortReverse}
             >
-              Points
             </Sort>
           </span>
           <span style={SMALL_COLUMN}>
@@ -93,7 +99,7 @@ export default class Table extends Component {
             <span style={SMALL_COLUMN }>{item.points}</span>
             <span style={SMALL_COLUMN}>
               <Button onClick={() => onDismiss(item.objectID)} className='button-inline'>
-                Dismiss
+                <FontAwesomeIcon icon={faArchive} />
               </Button>
             </span>
           </div>
