@@ -15,7 +15,7 @@ exports[`App has a valid snapshot 1`] = `
       <input
         onChange={[Function]}
         type="text"
-        value=""
+        value="react"
       />
       <button
         type="submit"
